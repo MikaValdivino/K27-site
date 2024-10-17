@@ -1,5 +1,8 @@
 # K27 - Website de Moda de Luxo
 
+[Visite o site clicando aqui](https://fastidious-vacherin-27fc6e.netlify.app)
+
+
 ![site K27](./site-k27.png)
 
 Este site foi desenvolvido para uma marca de moda focada em roupas femininas exclusivas e sofisticadas. O objetivo do site é proporcionar uma experiência elegante e envolvente, refletindo a dedicação da marca à qualidade e ao design atemporal.
