@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SHOP | K27</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      /* Global Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #0d0d0d;
+        color: #fff;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: color 0.3s ease;
+      }
+
+      a:hover {
+        color: #f3c7c2;
+      }
+
+      /* Navbar */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: rgba(13, 13, 13, 0.9);
+        z-index: 1000;
+        padding: 1.5rem 0;
+        backdrop-filter: blur(10px);
+      }
+
+      .navbar ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 2.5rem;
+      }
+
+      .navbar ul li a {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        color: #fff;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .navbar ul li a::after {
+        content: "";
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        bottom: -5px;
+        left: 50%;
+        background-color: #f3c7c2;
+        transition: width 0.4s ease, left 0.4s ease;
+      }
+
+      .navbar ul li a:hover::after {
+        width: 100%;
+        left: 0;
+      }
+
+      /* Barra de pesquisa */
+      .search-bar {
+        margin: 20px auto;
+        text-align: center;
+      }
+
+      .search-bar input {
+        padding: 10px;
+        width: 300px;
+        border: none;
+        border-radius: 20px;
+        outline: none;
+      }
+
+      .search-bar button {
+        padding: 10px 20px;
+        background-color: #f3c7c2;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+
+      .search-bar button:hover {
+        background-color: #e2b8b3;
+        transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
+      }
+
+      /* Seção de Cabeçalho (Page Header) */
+      .page-header {
+        padding: 150px 20px 50px;
+        background-color: #0d0d0d;
+        text-align: center;
+      }
+
+      .page-header h1 {
+        font-size: 3rem;
+        color: #f3c7c2;
+        margin-bottom: 1rem;
+      }
+
+      .page-header p {
+        font-size: 1.2rem;
+        color: #ccc;
+      }
+
+      /* Seção de Produtos */
+      .product-section {
+        padding: 40px 20px;
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+      }
+
+      .product-card {
+        background-color: #1b1b1b;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden; /* Adicionado para esconder o excesso de conteúdo */
+      }
+
+      .product-card img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+      }
+
+      .product-card:hover img {
+        transform: scale(1.1); /* Aumentar o efeito de zoom */
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .product-card h2 {
+        font-size: 1.6rem;
+        margin: 15px 0 10px;
+        color: #f3c7c2;
+        transition: color 0.3s ease;
+      }
+
+      .product-card:hover h2 {
+        color: #e2b8b3; /* Efeito de cor ao passar o mouse */
+      }
+
+      .wishlist-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: #641408;
+        transition: color 0.3s ease;
+      }
+
+      .wishlist-button.active {
+        color: #ff0000; /* Muda a cor para vermelho quando ativo */
+      }
+
+      .ratings {
+        color: #ffd700; /* Cor dourada para as estrelas */
+        margin: 5px 0;
+      }
+
+      .price {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #f3c7c2;
+        margin-top: 10px;
+        display: block;
+        transition: color 0.3s ease;
+      }
+
+      .price:hover {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      footer {
+        text-align: center;
+        padding: 2rem 0;
+        background-color: #0d0d0d;
+        color: #666;
+        font-size: 0.9rem;
+        letter-spacing: 0.05rem;
+      }
+
+      footer a {
+        color: #f3c7c2;
+      }
+
+      footer .social-icons {
+        margin-top: 10px;
+      }
+
+      footer .social-icons a {
+        margin: 0 10px;
+      }
+
+      footer .social-icons img {
+        width: 25px; /* Ajuste o tamanho conforme necessário */
+        height: 25px; /* Ajuste o tamanho conforme necessário */
+        transition: transform 0.3s ease;
+      }
+
+      footer .social-icons img:hover {
+        transform: scale(1.1); /* Efeito de zoom ao passar o mouse */
+      }
+
+      /* Responsividade */
+      @media (max-width: 1024px) {
+        .product-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 40px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .product-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .product-card img {
+          height: 300px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/pages/about.html">Sobre</a></li>
+        <li><a href="/pages/collections.html">Coleção</a></li>
+        <li><a href="/pages/contact.html">Contato</a></li>
+      </ul>
+    </nav>
+
+    <header class="page-header">
+      <h1>Coleção</h1>
+      <p>Descubra as peças da nossa mais recente coleção</p>
+    </header>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Pesquisar produtos..." />
+      <button>Pesquisar</button>
+    </div>
+    <section class="product-section">
+      <div class="product-grid">
+        <div class="product-card">
+          <a href="product-page.html?productId=1"></a>
+          <img src="/imagens/produto1.png" alt="Swarm of Cupids Corset" />
+          <h2>Vestido Heloisa</h2>
+          <button class="wishlist-button">♡</button>
+          <div class="ratings">★★★★☆</div>
+          <p class="description">Lorem.</p>
+          <a class="price" href="cart.html">R$ 750,00</a>
+        </div>
+        <div class="product-card slide-in">
+          <img src="/imagens/produto2.jpg" alt="Jagger Blouse" />
+          <h2>Blazer Miko</h2>
+          <button class="wishlist-button">♡</button>
+          <div class="ratings">★★★★☆</div>
+          <p class="description">Lorem.</p>
+          <a class="price" href="cart.html">R$ 1.200,00</a>
+        </div>
+        <div class="product-card slide-in">
+          <img src="/imagens/produto3.jpg" alt="Saia Sophie" />
+          <h2>Saia Sophie</h2>
+          <button class="wishlist-button">♡</button>
+          <div class="ratings">★★★★☆</div>
+          <p class="description">Lorem.</p>
+          <a class="price" href="cart.html">R$ 499,90</a>
+        </div>
+        <div class="product-card slide-in">
+          <img src="/imagens/produto5.png" alt="Vestido Jasmine" />
+          <h2>Calça Madalena</h2>
+          <button class="wishlist-button">♡</button>
+          <div class="ratings">★★★★☆</div>
+          <p class="description">Lorem.</p>
+          <a class="price" href="cart.html">R$ 580,00</a>
+        </div>
+        <div class="product-card slide-in">
+          <img src="/imagens/produto6.png" alt="Top Mercedes" />
+          <h2>Top Mercedes</h2>
+          <button class="wishlist-button">♡</button>
+          <div class="ratings">★★★★☆</div>
+          <p class="description">Lorem.</p>
+          <a class="price" href="cart.html">R$ 380,00</a>
+        </div>
+        <div class="product-card slide-in">
+          <img src="/imagens/produto7.png" alt="Vestido Luisa" />
+          <h2>Vestido Luisa</h2>
+          <button class="wishlist-button">♡</button>
+          <div class="ratings">★★★★☆</div>
+          <p class="description">Lorem.</p>
+          <a class="price" href="cart.html">R$ 450,00</a>
+        </div>
+        <div class="product-card slide-in">
+          <img src="/imagens/produto8.png" alt="Vestido Luisa" />
+          <h2>Vestido Luisa</h2>
+          <button class="wishlist-button">♡</button>
+          <div class="ratings">★★★★☆</div>
+          <p class="description">Lorem.</p>
+          <a class="price" href="cart.html">R$ 600,00</a>
+        </div>
+        <div class="product-card slide-in">
+          <img src="/imagens/produto9.png" alt="Vestido Luisa" />
+          <h2>Vestido Luisa</h2>
+          <button class="wishlist-button">♡</button>
+          <div class="ratings">★★★★☆</div>
+          <p class="description">Lorem.</p>
+          <a class="price" href="cart.html">R$ 560,00</a>
+        </div>
+        <!-- Adicione mais produtos aqui -->
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        &copy; 2024 K27. Todos os direitos reservados. |
+        <a href="#">Política de Privacidade</a>
+      </p>
+      <div class="social-icons">
+        <a href="#" aria-label="Instagram"
+          ><img
+            src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png"
+            alt="Instagram"
+        /></a>
+        <a href="#" aria-label="Facebook"
+          ><img
+            src="https://img.icons8.com/ios-filled/50/ffffff/facebook.png"
+            alt="Facebook"
+        /></a>
+        <a href="#" aria-label="Twitter"
+          ><img
+            src="https://img.icons8.com/ios-filled/50/ffffff/twitter-squared.png"
+            alt="Twitter"
+        /></a>
+        <a href="#" aria-label="Pinterest"
+          ><img
+            src="https://img.icons8.com/ios-filled/50/ffffff/pinterest.png"
+            alt="Pinterest"
+        /></a>
+      </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+    <script>
+      // Função para animar o botão do coração
+      document.querySelectorAll(".wishlist-button").forEach((button) => {
+        button.addEventListener("click", () => {
+          // Ativar a animação e mudar a cor
+          button.classList.toggle("active");
+          gsap.fromTo(
+            button,
+            { scale: 1 },
+            { scale: 1.5, duration: 0.2, yoyo: true, repeat: 1 }
+          );
+        });
+      });
+    </script>
+  </body>
+</html>

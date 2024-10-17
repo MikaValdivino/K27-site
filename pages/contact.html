@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact - Luxury Fashion</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Global Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #0d0d0d;
+        color: #fff;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: color 0.3s ease;
+      }
+
+      a:hover {
+        color: #f3c7c2;
+      }
+
+      /* Navbar */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: rgba(13, 13, 13, 0.729);
+        z-index: 1000;
+        padding: 1.5rem 0;
+        backdrop-filter: blur(10px);
+      }
+
+      .navbar ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 2.5rem;
+      }
+
+      .navbar ul li a {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        color: #fff;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .navbar ul li a::after {
+        content: "";
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        bottom: -5px;
+        left: 50%;
+        background-color: #f3c7c2;
+        transition: width 0.4s ease, left 0.4s ease;
+      }
+
+      .navbar ul li a:hover::after {
+        width: 100%;
+        left: 0;
+      }
+
+      /* Seção de Contato */
+      .contact {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 0 20px;
+        background-color: #0d0d0d;
+      }
+
+      .contact-container {
+        max-width: 600px;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 4rem 3rem;
+        border-radius: 12px;
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .contact-container:hover {
+        transform: translateY(-10px);
+      }
+
+      .contact-container h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        letter-spacing: 0.1rem;
+        color: #f3c7c2;
+        position: relative;
+        opacity: 0;
+      }
+
+      .contact-description {
+        font-size: 1.1rem;
+        color: #ccc;
+        margin-bottom: 2rem;
+        line-height: 1.8;
+        opacity: 0;
+      }
+
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .form-group {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 1rem;
+        border: none;
+        border-bottom: 2px solid #444;
+        background-color: transparent;
+        color: #fff;
+        font-size: 1rem;
+        transition: border-color 0.4s ease, background-color 0.3s ease;
+      }
+
+      .contact-form input:focus,
+      .contact-form textarea:focus {
+        border-color: #f3c7c2;
+        background-color: rgba(255, 255, 255, 0.1);
+        outline: none;
+      }
+
+      .contact-form button {
+        padding: 1rem;
+        background-color: #f3c7c2;
+        color: #111;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 0.15rem;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.4s ease, transform 0.4s ease;
+      }
+
+      .contact-form button:hover {
+        background-color: #fff;
+        transform: scale(1.05);
+      }
+
+      .contact-form button:active {
+        transform: scale(0.98);
+      }
+
+      /* Animações */
+      @keyframes fadeInUp {
+        0% {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .contact-container h1,
+      .contact-description,
+      .contact-form input,
+      .contact-form textarea,
+      .contact-form button {
+        animation: fadeInUp 1s ease forwards;
+      }
+
+      .contact-container h1 {
+        animation-delay: 0.3s;
+      }
+
+      .contact-description {
+        animation-delay: 0.6s;
+      }
+
+      .contact-form input,
+      .contact-form textarea,
+      .contact-form button {
+        animation-delay: 0.9s;
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        padding: 2rem 0;
+        background-color: #0d0d0d;
+        color: #666;
+        font-size: 0.9rem;
+        letter-spacing: 0.05rem;
+        position: flex;
+        width: 100%;
+        bottom: 0;
+      }
+
+      footer a {
+        color: #f3c7c2;
+      }
+
+      footer .social-icons {
+        margin-top: 10px;
+      }
+
+      footer .social-icons a {
+        margin: 0 10px;
+      }
+
+      footer .social-icons img {
+        width: 25px; /* Ajuste o tamanho conforme necessário */
+        height: 25px; /* Ajuste o tamanho conforme necessário */
+        transition: transform 0.3s ease;
+      }
+
+      footer .social-icons img:hover {
+        transform: scale(1.1); /* Efeito de zoom ao passar o mouse */
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/pages/about.html">Sobre</a></li>
+        <li><a href="/pages/collections.html">Coleção</a></li>
+        <li><a href="/pages/contact.html">Contato</a></li>
+      </ul>
+    </nav>
+
+    <section class="contact">
+      <div class="contact-container">
+        <h1>Entre em contato</h1>
+        <p class="contact-description">
+          Adoraríamos ouvir de você. Por favor, preencha o formulário abaixo e
+          nossa equipe entrará em contato em breve.
+        </p>
+        <form class="contact-form">
+          <div class="form-group">
+            <input type="text" placeholder="Nome" required />
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="Email" required />
+          </div>
+          <div class="form-group">
+            <textarea placeholder="Sua Mensagem" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Enviar Mensagem</button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        &copy; 2024 K27. Todos os direitos reservados. |
+        <a href="#">Política de Privacidade</a>
+      </p>
+      <div class="social-icons">
+        <a href="#" aria-label="Instagram"
+          ><img
+            src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png"
+            alt="Instagram"
+        /></a>
+        <a href="#" aria-label="Facebook"
+          ><img
+            src="https://img.icons8.com/ios-filled/50/ffffff/facebook.png"
+            alt="Facebook"
+        /></a>
+        <a href="#" aria-label="Twitter"
+          ><img
+            src="https://img.icons8.com/ios-filled/50/ffffff/twitter-squared.png"
+            alt="Twitter"
+        /></a>
+        <a href="#" aria-label="Pinterest"
+          ><img
+            src="https://img.icons8.com/ios-filled/50/ffffff/pinterest.png"
+            alt="Pinterest"
+        /></a>
+      </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script>
+      // Navbar hover animation with GSAP
+      document.querySelectorAll(".navbar ul li a").forEach((link) => {
+        link.addEventListener("mouseenter", () => {
+          gsap.to(link, { color: "#f3c7c2", duration: 0.3, y: -5 });
+        });
+        link.addEventListener("mouseleave", () => {
+          gsap.to(link, { color: "#fff", duration: 0.3, y: 0 });
+        });
+      });
+
+      // Contact Section animations
+      gsap.from(".contact-container", {
+        opacity: 0,
+        y: 100,
+        duration: 1.5,
+        ease: "power3.out",
+      });
+
+      gsap.from(
+        ".contact-form input, .contact-form textarea, .contact-form button",
+        {
+          opacity: 0,
+          y: 30,
+          duration: 1.2,
+          stagger: 0.2,
+          ease: "power3.out",
+          delay: 0.5,
+        }
+      );
+
+      gsap.to(".contact-container h1", {
+        opacity: 1,
+        duration: 1.5,
+        delay: 0.2,
+        ease: "power2.out",
+      });
+    </script>
+  </body>
+</html>
